@@ -1,0 +1,17 @@
+E:\API\APP\Repository\bin\Debug\net6.0\Repository.deps.json
+E:\API\APP\Repository\bin\Debug\net6.0\Repository.runtimeconfig.json
+E:\API\APP\Repository\bin\Debug\net6.0\Repository.dll
+E:\API\APP\Repository\bin\Debug\net6.0\Repository.pdb
+E:\API\APP\Repository\bin\Debug\net6.0\Domain.dll
+E:\API\APP\Repository\bin\Debug\net6.0\Domain.pdb
+E:\API\APP\Repository\obj\Debug\net6.0\Repository.csproj.AssemblyReference.cache
+E:\API\APP\Repository\obj\Debug\net6.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+E:\API\APP\Repository\obj\Debug\net6.0\Repository.AssemblyInfoInputs.cache
+E:\API\APP\Repository\obj\Debug\net6.0\Repository.AssemblyInfo.cs
+E:\API\APP\Repository\obj\Debug\net6.0\Repository.csproj.CoreCompileInputs.cache
+E:\API\APP\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
+E:\API\APP\Repository\obj\Debug\net6.0\Repository.dll
+E:\API\APP\Repository\obj\Debug\net6.0\refint\Repository.dll
+E:\API\APP\Repository\obj\Debug\net6.0\Repository.pdb
+E:\API\APP\Repository\obj\Debug\net6.0\Repository.genruntimeconfig.cache
+E:\API\APP\Repository\obj\Debug\net6.0\ref\Repository.dll

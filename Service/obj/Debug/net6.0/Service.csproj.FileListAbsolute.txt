@@ -1,0 +1,17 @@
+E:\API\APP\Service\bin\Debug\net6.0\Service.deps.json
+E:\API\APP\Service\bin\Debug\net6.0\Service.dll
+E:\API\APP\Service\bin\Debug\net6.0\Service.pdb
+E:\API\APP\Service\bin\Debug\net6.0\Domain.dll
+E:\API\APP\Service\bin\Debug\net6.0\Repository.dll
+E:\API\APP\Service\bin\Debug\net6.0\Repository.pdb
+E:\API\APP\Service\bin\Debug\net6.0\Domain.pdb
+E:\API\APP\Service\obj\Debug\net6.0\Service.csproj.AssemblyReference.cache
+E:\API\APP\Service\obj\Debug\net6.0\Service.GeneratedMSBuildEditorConfig.editorconfig
+E:\API\APP\Service\obj\Debug\net6.0\Service.AssemblyInfoInputs.cache
+E:\API\APP\Service\obj\Debug\net6.0\Service.AssemblyInfo.cs
+E:\API\APP\Service\obj\Debug\net6.0\Service.csproj.CoreCompileInputs.cache
+E:\API\APP\Service\obj\Debug\net6.0\Service.csproj.CopyComplete
+E:\API\APP\Service\obj\Debug\net6.0\Service.dll
+E:\API\APP\Service\obj\Debug\net6.0\refint\Service.dll
+E:\API\APP\Service\obj\Debug\net6.0\Service.pdb
+E:\API\APP\Service\obj\Debug\net6.0\ref\Service.dll
