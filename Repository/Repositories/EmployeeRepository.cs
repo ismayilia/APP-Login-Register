@@ -9,6 +9,7 @@ namespace Repository.Repositories
 
 		public EmployeeRepository(AppDbContext context) : base(context) { }
 
+
 		public async Task<List<Employee>> GetAllByFullNameAsync(string fullName)
 		{
 			return fullName != null ? await _context.Employees.Where(m => m.FullName.Trim().ToLower().Contains(fullName.Trim().ToLower()))

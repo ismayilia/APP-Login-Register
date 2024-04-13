@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace APP.Controllers
 {
-	[Authorize(AuthenticationSchemes ="Bearer")]
-	[Route("api/[controller]/[action]")]
+	[Authorize(AuthenticationSchemes = "Bearer",Roles ="Admin")]
+	[Route("api/admin/[controller]/[action]")]
 	[ApiController]
-	public class BaseController : ControllerBase
+	public class BaseAdminController : ControllerBase
 	{
 	}
 }

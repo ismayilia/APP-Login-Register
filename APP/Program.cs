@@ -2,7 +2,6 @@ using Domain.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Repository.Data;
 using Repository.Repositories;
@@ -11,9 +10,12 @@ using Service.Helpers;
 using Service.Mappings;
 using Service.Services;
 using Service.Services.Interfaces;
-using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Service;
+using Repository;
+using Microsoft.OpenApi.Models;
+using APP.Injections;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,8 +26,9 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
+// JWT BEARER oldugun bildiririk acar isharesi gelir
+builder.Services.AddSwagger();
 
 // JWT istifade etdiyimizi bildirmeliyik
 
@@ -80,10 +83,10 @@ builder.Services.Configure<IdentityOptions>(option =>
 	option.Lockout.AllowedForNewUsers = true;
 });
 
-builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>)); // generic-in inject olmasi
-builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-builder.Services.AddScoped<IAccountService, AccountService>();
+//repo ve service gore scop olanlar---------------------------------------------
 
+builder.Services.AddServiceLayer();
+builder.Services.AddRepositoryLayer();
 
 
 var app = builder.Build();

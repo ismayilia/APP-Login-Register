@@ -24,17 +24,17 @@ namespace Service.Services
 		private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
-		private readonly JWTSettings _jwt;
+		private readonly ITokkenService _tokkenService;
 
         public AccountService(RoleManager<IdentityRole> roleManager, 
                                     UserManager<AppUser> userManager,
                                     IMapper mapper,
-									IOptions<JWTSettings> options)
+									ITokkenService tokkenService)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _mapper = mapper;
-			_jwt = options.Value;
+			_tokkenService = tokkenService;
         }
         public async Task CreateRoleAsync()
 		{
@@ -93,41 +93,29 @@ namespace Service.Services
 
 			var userRoles = await _userManager.GetRolesAsync(existUser);
 
-			string token = GenerateJwtToken(existUser, (List<string>)userRoles);
+			string token = _tokkenService.GenerateJwtToken(existUser, (List<string>)userRoles);
 
 			return new LoginResponse { IsSuccess = true, Errors = null, Token = token };
 		}
 
-		private string GenerateJwtToken(AppUser user, List<string> roles)
+		public async Task<BaseResponse> AddRoleToUserAsync(UserRoleDto request)
 		{
-			var claims = new List<Claim>
-		{
-				// adi sub olsun type-i username olsun
-			new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-			new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-			new Claim(ClaimTypes.NameIdentifier, user.UserName),
-			new Claim(ClaimTypes.Email, user.Email)
-		}; // claim-in nameidentifer propertisi username olsun
+			AppUser user = await _userManager.FindByIdAsync(request.UserId);
+			if (user is null) throw new NotFoundException("User not found");
 
-			// bashga neyise elave etmek istesek onuda foreache saliriq 
-			roles.ForEach(role =>
+			IdentityRole role = await _roleManager.FindByIdAsync(request.RoleId);
+			if (role is null) throw new NotFoundException("Role not found");
+
+			IList<string> userRoles = await _userManager.GetRolesAsync(user);
+
+			if (userRoles.Any(m=> m == role.Name))
 			{
-				claims.Add(new Claim(ClaimTypes.Role, role));
-			});
+				return new BaseResponse { IsSuccess = false, ErrorMessage = $"{role.Name} already exist" };
+			}
 
-			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt.Key));
-			var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-			var expires = DateTime.Now.AddDays(Convert.ToDouble(_jwt.ExpireDays));
+			await _userManager.AddToRoleAsync(user, role.Name);
 
-			var token = new JwtSecurityToken(
-				_jwt.Issuer,
-				_jwt.Issuer,
-				claims,
-				expires: expires,
-				signingCredentials: creds
-			);
-
-			return new JwtSecurityTokenHandler().WriteToken(token);
+			return new BaseResponse { IsSuccess = true, ErrorMessage = null};
 		}
 	}
 }

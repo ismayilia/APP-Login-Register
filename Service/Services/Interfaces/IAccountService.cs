@@ -15,5 +15,6 @@ namespace Service.Services.Interfaces
 		Task<RegisterResponse> SignUpAsync(RegisterDto request);
 		List<UserDto> GetAllUsers();
 		Task<LoginResponse> SignInAsync(LoginDto request);
+		Task<BaseResponse> AddRoleToUserAsync(UserRoleDto request);
 	}
 }
